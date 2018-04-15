@@ -1,0 +1,22 @@
+Entry 20180414
+* Project setup
+* Changed main class name from Game to SuperMario
+* Set up Singleton interface of SuperMario named Main
+
+Entry 20180415
+* Working on the tile system
+* Added Block Class to manage static foreground tiles, each added tile is an extension Class named after the .png
+  resource in the "Blocks" folder in content pipeline
+  * Every derived class must implement OnInitialize() where special settings can be applied and a unique Id is 
+    given
+  * Through System.Reflection all these are loaded in a blocks[] array in main game
+  * Frame choice from the tileset is performed through a bitmap approach
+* In the main class there's a Tile[255,255] tile array
+* Installed a new Documentation generation software, Doxygen
+* Added documentation for Block
+* Implemented a small block-placing-with-mouse feature for testing
+* Fixed performance problems caused by raised exceptions in BitMap calculation
+* Fixed crash that occurred when LMB was pressed outside of the Game window
+* Implemented a basic Camera system with Matrices and temporary ASDW controls to move around in the level
+* Started implementation of a Dictionary based multi animated sprites system
+  * Need to get MarioSmall animation Working now
