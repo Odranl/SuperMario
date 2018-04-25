@@ -43,12 +43,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
+    <Compile Include="Character\Character.cs" />
+    <Compile Include="Collider.cs" />
+    <Compile Include="Framework\Rectangle.cs" />
     <Compile Include="Graphics\AnimatedSprite.cs" />
     <Compile Include="Graphics\AnimatedSpriteCollection.cs" />
     <Compile Include="Graphics\SpriteActions.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="LevelComponents\TileFrames.cs" />
     <Compile Include="LevelComponents\Wall.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="RigidBody.cs" />
     <Compile Include="SuperMario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

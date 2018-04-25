@@ -112,7 +112,7 @@ namespace SuperMario.LevelComponents
                                 //Top-Left corner
                                 if (pow == 0)
                                 {
-                                    if (SuperMario.Main.tiles[x, y - 1].BlockId == EntityId.BlockId.Air || SuperMario.Main.tiles[x - 1, y].BlockId == EntityId.BlockId.Air)
+                                    if (SuperMario.Main.tiles[x, y - 1].BlockId == ID.BlockId.Air || SuperMario.Main.tiles[x - 1, y].BlockId == ID.BlockId.Air)
                                     {
                                         continue;
                                     }
@@ -120,7 +120,7 @@ namespace SuperMario.LevelComponents
                                 //Top-Right corner
                                 else if (pow == 2)
                                 {
-                                    if (SuperMario.Main.tiles[x, y - 1].BlockId == EntityId.BlockId.Air || SuperMario.Main.tiles[x + 1, y].BlockId == EntityId.BlockId.Air)
+                                    if (SuperMario.Main.tiles[x, y - 1].BlockId == ID.BlockId.Air || SuperMario.Main.tiles[x + 1, y].BlockId == ID.BlockId.Air)
                                     {
                                         continue;
                                     }
@@ -128,7 +128,7 @@ namespace SuperMario.LevelComponents
                                 //Bottom-Left corner
                                 else if (pow == 5)
                                 {
-                                    if (SuperMario.Main.tiles[x - 1, y].BlockId == EntityId.BlockId.Air || SuperMario.Main.tiles[x, y + 1].BlockId == EntityId.BlockId.Air)
+                                    if (SuperMario.Main.tiles[x - 1, y].BlockId == ID.BlockId.Air || SuperMario.Main.tiles[x, y + 1].BlockId == ID.BlockId.Air)
                                     {
                                         continue;
                                     }
@@ -136,7 +136,7 @@ namespace SuperMario.LevelComponents
                                 //Bottom-Right corner
                                 else if (pow == 7)
                                 {
-                                    if (SuperMario.Main.tiles[x + 1, y].BlockId == EntityId.BlockId.Air || SuperMario.Main.tiles[x, y + 1].BlockId == EntityId.BlockId.Air)
+                                    if (SuperMario.Main.tiles[x + 1, y].BlockId == ID.BlockId.Air || SuperMario.Main.tiles[x, y + 1].BlockId == ID.BlockId.Air)
                                     {
                                         continue;
                                     }
@@ -222,7 +222,7 @@ namespace SuperMario.LevelComponents
     {
         public override void OnInitialize()
         {
-            Id = EntityId.BlockId.Grass;
+            Id = ID.BlockId.Grass;
 
         }
     }

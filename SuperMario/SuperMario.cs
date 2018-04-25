@@ -28,10 +28,10 @@ namespace SuperMario
         MouseState mouseState;
         MouseState oldMouseState;
 
-        KeyboardState keyboardState;
-        KeyboardState oldKeyboardState;
+        public KeyboardState KeyboardState { get; private set; }
+        public KeyboardState OldKeyboardState { get; private set; }
 
-        Camera camera;
+        Player player;
 
         /// <summary>
         /// The level grid containing tiles infos
@@ -90,12 +90,15 @@ namespace SuperMario
             }
 
             //Testing code for new BitMap algorithm
-            tiles[3, 3] = new Tile(EntityId.BlockId.Grass, -1);
-            tiles[4, 3] = new Tile(EntityId.BlockId.Grass, -1);
-            tiles[5, 3] = new Tile(EntityId.BlockId.Grass, -1);
-            tiles[4, 4] = new Tile(EntityId.BlockId.Grass, -1);
+            tiles[3, 3] = new Tile(ID.BlockId.Grass, -1);
+            tiles[4, 3] = new Tile(ID.BlockId.Grass, -1);
+            tiles[5, 3] = new Tile(ID.BlockId.Grass, -1);
+            tiles[4, 4] = new Tile(ID.BlockId.Grass, -1);
 
-            camera = new Camera();
+            tiles[0, 6] = new Tile(ID.BlockId.Grass, -1);
+
+
+            player = new Player();
         }
 
         /// <summary>
@@ -117,12 +120,6 @@ namespace SuperMario
             // TODO: Unload any non ContentManager content here
         }
 
-        private Vector3 RelativeToAbsolutePosition(Vector2 relativePosition)
-        {
-            return Matrix.Invert(camera.Matrix).Translation + new Vector3(relativePosition, 0) / camera.Matrix.Scale;
-
-        }
-
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -132,23 +129,21 @@ namespace SuperMario
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            keyboardState = Keyboard.GetState();
+            KeyboardState = Keyboard.GetState();
             MouseManagement();
-            if (keyboardState.IsKeyDown(Keys.Right))
-            {
-                camera.position.X--;
-            }
-            camera.Update();
+
+            player.Update(gameTime);
+
             base.Update(gameTime);
 
-            oldKeyboardState = keyboardState;
+            OldKeyboardState = KeyboardState;
         }
 
         private void MouseManagement()
         {
             mouseState = Mouse.GetState();
 
-            var tilePosition = RelativeToAbsolutePosition(mouseState.Position.ToVector2()) / 16;
+            var tilePosition = player.Camera.RelativeToAbsolutePosition(mouseState.Position.ToVector2()) / 16;
             if (tilePosition.X > 0 && tilePosition.Y > 0)
             {
                 if (mouseState.LeftButton == ButtonState.Pressed)
@@ -172,7 +167,7 @@ namespace SuperMario
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            spriteBatch.Begin(transformMatrix: camera.Matrix, samplerState: SamplerState.PointClamp);
+            spriteBatch.Begin(transformMatrix: player.Camera.GetMatrix(), samplerState: SamplerState.PointClamp);
 
             for (int x = 0; x < tiles.GetLength(0); ++x)
             {
@@ -186,8 +181,10 @@ namespace SuperMario
             var texture = new Texture2D(GraphicsDevice, 16, 16);
             texture.SetData(Enumerable.Range(0, texture.Width * texture.Height).Select(i => new Color(Color.Yellow, 0.5f)).ToArray());
 
-            var tilePosition = RelativeToAbsolutePosition(mouseState.Position.ToVector2()) / 16;
+            var tilePosition = player.Camera.RelativeToAbsolutePosition(mouseState.Position.ToVector2()) / 16;
             spriteBatch.Draw(texture, new Vector2((int)tilePosition.X * 16, (int)tilePosition.Y * 16), Color.Yellow);
+
+            player.Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);

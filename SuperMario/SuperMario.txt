@@ -20,3 +20,14 @@ Entry 20180415
 * Implemented a basic Camera system with Matrices and temporary ASDW controls to move around in the level
 * Started implementation of a Dictionary based multi animated sprites system
   * Need to get MarioSmall animation Working now
+
+Entry 20180425
+* Small Mario animations now work
+* Working on the collision system and physics
+  * Implemented a simple collision engine that works between AABBs Rectangles
+    * Still very glitchy, consider it a pre-alpha version
+  * Implemented Gravity physics
+* Added new in-depth documentation
+* Tweaked Camera's matrix, now zoom works as intended and the camera is locked on the player
+* Restructured ID classes, now they have their namespace
+
