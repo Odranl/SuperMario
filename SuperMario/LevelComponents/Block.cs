@@ -112,7 +112,7 @@ namespace SuperMario.LevelComponents
                                 //Top-Left corner
                                 if (pow == 0)
                                 {
-                                    if (SuperMario.Main.tiles[x, y - 1].BlockId == ID.BlockId.Air || SuperMario.Main.tiles[x - 1, y].BlockId == ID.BlockId.Air)
+                                    if (SuperMario.Main.tiles[x, y - 1].BlockId != tileId || SuperMario.Main.tiles[x - 1, y].BlockId != tileId)
                                     {
                                         continue;
                                     }
@@ -120,7 +120,7 @@ namespace SuperMario.LevelComponents
                                 //Top-Right corner
                                 else if (pow == 2)
                                 {
-                                    if (SuperMario.Main.tiles[x, y - 1].BlockId == ID.BlockId.Air || SuperMario.Main.tiles[x + 1, y].BlockId == ID.BlockId.Air)
+                                    if (SuperMario.Main.tiles[x, y - 1].BlockId != tileId || SuperMario.Main.tiles[x + 1, y].BlockId != tileId)
                                     {
                                         continue;
                                     }
@@ -128,7 +128,7 @@ namespace SuperMario.LevelComponents
                                 //Bottom-Left corner
                                 else if (pow == 5)
                                 {
-                                    if (SuperMario.Main.tiles[x - 1, y].BlockId == ID.BlockId.Air || SuperMario.Main.tiles[x, y + 1].BlockId == ID.BlockId.Air)
+                                    if (SuperMario.Main.tiles[x - 1, y].BlockId != tileId || SuperMario.Main.tiles[x, y + 1].BlockId != tileId)
                                     {
                                         continue;
                                     }
@@ -136,7 +136,7 @@ namespace SuperMario.LevelComponents
                                 //Bottom-Right corner
                                 else if (pow == 7)
                                 {
-                                    if (SuperMario.Main.tiles[x + 1, y].BlockId == ID.BlockId.Air || SuperMario.Main.tiles[x, y + 1].BlockId == ID.BlockId.Air)
+                                    if (SuperMario.Main.tiles[x + 1, y].BlockId != tileId || SuperMario.Main.tiles[x, y + 1].BlockId != tileId)
                                     {
                                         continue;
                                     }
@@ -147,9 +147,9 @@ namespace SuperMario.LevelComponents
                         }
                     }
                     //TODO Optimize the code to not raise an expensive Exception
-                    catch (IndexOutOfRangeException)
+                    catch (IndexOutOfRangeException e)
                     {
-
+                        System.Console.WriteLine("Error on tile creation: " + e.Message);
                     }
                 }
             }
@@ -224,6 +224,13 @@ namespace SuperMario.LevelComponents
         {
             Id = ID.BlockId.Grass;
 
+        }
+    }
+
+    class Stone : Block
+    {
+        public override void OnInitialize() {
+            Id = ID.BlockId.Stone;
         }
     }
 }

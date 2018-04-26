@@ -148,7 +148,7 @@ namespace SuperMario
             {
                 if (mouseState.LeftButton == ButtonState.Pressed)
                 {
-                    tiles[(int)tilePosition.X, (int)tilePosition.Y].BlockId = 0;
+                    tiles[(int)tilePosition.X, (int)tilePosition.Y].BlockId = ID.BlockId.Stone;
                 }
                 else if (mouseState.RightButton == ButtonState.Pressed)
                 {
