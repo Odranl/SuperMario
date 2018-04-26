@@ -29,11 +29,11 @@ namespace SuperMario.Graphics
         /// <summary>
         /// Shortcut to access the frame width from the animation sprite
         /// </summary>
-        public int FrameWidth => this[ChoosenAction].FrameWidth;
+        public int FrameWidth { get; private set; }
         /// <summary>
         /// Shortcut to access the frame height from the animation sprite
         /// </summary>
-        public int FrameHeight => this[ChoosenAction].FrameHeight;
+        public int FrameHeight { get; private set; }
         /// <summary>
         /// The spritesheet that will be used by the animation set
         /// </summary>
@@ -46,6 +46,9 @@ namespace SuperMario.Graphics
         {
             AnimatedSprites = new Dictionary<SpriteActions, AnimatedSprite>();
             AddAnimatedSprites();
+
+            FrameWidth = this.FirstOrDefault().Value.FrameWidth;
+            FrameHeight = this.FirstOrDefault().Value.FrameHeight;
         }
         /// <summary>
         /// This method is used by child classes to load the animations in the dictionary

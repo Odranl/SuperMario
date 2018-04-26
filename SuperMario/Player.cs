@@ -43,7 +43,7 @@ namespace SuperMario
 
             RigidBody.Update();
 
-            if (RigidBody.velocity.Y != 0 && !RigidBody.grounded)
+            if (RigidBody.velocity.Y != 0)
             {
                 marioSmallSprites.ChoosenAction = Graphics.SpriteActions.Falling;
             }

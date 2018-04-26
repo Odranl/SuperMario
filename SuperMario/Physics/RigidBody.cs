@@ -1,10 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using SuperMario.LevelComponents;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SuperMario
 {
@@ -30,14 +25,19 @@ namespace SuperMario
         /// The vector containing the velocity of the <see cref="RigidBody"/>
         /// </summary>
         public Vector2 velocity;
-
+        /// <summary>
+        /// The <see cref="Rectangle"/> used to compute collisions
+        /// </summary>
         public Rectangle collider;
 
         Vector2 maxSpeed;
 
         float gravityAcceleration = 1;
-        float dragPercentage;
-
+        float dragPercentage = 0.05f;
+        /// <summary>
+        /// Default constructor that creates and initiazlizes the collider
+        /// </summary>
+        /// <param name="colliderSize">Size of the collider</param>
         public RigidBody(Vector2 colliderSize)
         {
             position = Vector2.Zero;
@@ -48,6 +48,12 @@ namespace SuperMario
 
             maxSpeed = new Vector2(8, 10);
         }
+        /// <summary>
+        /// Creates a new Rigid Body with a collider of given size
+        /// </summary>
+        /// <param name="xSize">Width of the collider</param>
+        /// <param name="ySize">The Height of the collider</param>
+        /// <returns></returns>
         public RigidBody(int xSize, int ySize) : this(new Vector2(xSize, ySize))
         {
 
